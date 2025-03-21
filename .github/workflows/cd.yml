@@ -1,0 +1,121 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy-dev:
+    name: Deploy to Development
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    environment: development
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      # Backend build and deploy
+      - name: Install backend dependencies
+        run: cd backend && npm ci
+        
+      - name: Create backend .env file
+        run: |
+          cd backend
+          echo "NODE_ENV=development" > .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }}" >> .env
+          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env
+          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
+          echo "N8N_WEBHOOK_URL=${{ secrets.N8N_WEBHOOK_URL }}" >> .env
+          
+      - name: Run database migrations
+        run: cd backend && npm run migrate
+        
+      # Frontend build and deploy
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+        
+      - name: Create frontend .env file
+        run: |
+          cd frontend
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
+          
+      - name: Build frontend
+        run: cd frontend && npm run build
+      
+      # Placeholder for actual deployment steps (would typically use SSH, Docker, etc.)
+      - name: Deploy to development server
+        run: echo "Deploying to development environment - implementation needed"
+  
+  deploy-prod:
+    name: Deploy to Production
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    needs: [smoke-test]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      # Backend build and deploy
+      - name: Install backend dependencies
+        run: cd backend && npm ci
+        
+      - name: Create backend .env file
+        run: |
+          cd backend
+          echo "NODE_ENV=production" > .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }}" >> .env
+          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env
+          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
+          echo "N8N_WEBHOOK_URL=${{ secrets.N8N_WEBHOOK_URL }}" >> .env
+          
+      - name: Run database migrations
+        run: cd backend && npm run migrate
+        
+      # Frontend build and deploy
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+        
+      - name: Create frontend .env file
+        run: |
+          cd frontend
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
+          
+      - name: Build frontend
+        run: cd frontend && npm run build
+        
+      # Placeholder for actual deployment steps
+      - name: Deploy to production server
+        run: echo "Deploying to production environment - implementation needed"
+  
+  smoke-test:
+    name: Smoke Test
+    runs-on: ubuntu-latest
+    needs: [deploy-dev]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Perform smoke tests
+        run: echo "Running smoke tests - implementation needed" 

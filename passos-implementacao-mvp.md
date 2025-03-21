@@ -16,9 +16,9 @@
 - [x] Configurar conta no Cloudinary e obter credenciais
 
 ### 1.3 Configuração de CI/CD
-- [ ] Configurar pipeline básico no GitHub Actions ou GitLab CI
-- [ ] Configurar ambientes de desenvolvimento, teste e produção
-- [ ] Configurar scripts de build e deploy
+- [x] Configurar pipeline básico no GitHub Actions ou GitLab CI
+- [x] Configurar ambientes de desenvolvimento, teste e produção
+- [x] Configurar scripts de build e deploy
 
 ## Fase 2: Desenvolvimento do Backend
 

@@ -31,6 +31,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "build:test": "vite build --mode test",
+    "build:prod": "vite build --mode production",
+    "deploy:dev": "npm run build:dev && echo \"Frontend deployment to dev environment\"",
+    "deploy:test": "npm run build:test && echo \"Frontend deployment to test environment\"",
+    "deploy:prod": "npm run build:prod && echo \"Frontend deployment to production environment\"",
     "lint": "eslint src/**/*.{js,jsx}",
     "lint:fix": "eslint src/**/*.{js,jsx} --fix",
     "preview": "vite preview"

@@ -10,7 +10,18 @@
     "seed": "knex seed:run",
     "test": "jest",
     "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "lint:fix": "eslint src/**/*.js --fix",
+    "build": "echo \"No build step required for Node.js\"",
+    "build:dev": "NODE_ENV=development npm run build",
+    "build:test": "NODE_ENV=test npm run build",
+    "build:prod": "NODE_ENV=production npm run build",
+    "deploy:dev": "NODE_ENV=development npm run migrate && npm run start",
+    "deploy:test": "NODE_ENV=test npm run migrate && npm run start",
+    "deploy:prod": "NODE_ENV=production npm run migrate && npm run start",
+    "setup:env": "node scripts/setup-env.js",
+    "setup:dev": "node scripts/setup-env.js development",
+    "setup:test": "node scripts/setup-env.js test",
+    "setup:prod": "node scripts/setup-env.js production"
   },
   "keywords": [
     "artes",
