@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # Serviço de frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=http://localhost:8000/api/v1
+    depends_on:
+      - backend
+
+  # Serviço de backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=8000
+      - DATABASE_URL=sqlite:/app/database.sqlite
+      - JWT_SECRET=seu_segredo_jwt_dev
+      - CLOUDINARY_CLOUD_NAME=seu_cloudinary_cloud_name
+      - CLOUDINARY_API_KEY=seu_cloudinary_api_key
+      - CLOUDINARY_API_SECRET=seu_cloudinary_api_secret
+      - N8N_WEBHOOK_URL=http://n8n:5678/webhook/
+    depends_on:
+      - n8n
+
+  # Serviço n8n para automação
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    environment:
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_HOST=localhost
+      - NODE_ENV=development
+      - WEBHOOK_URL=http://localhost:5678/
+
+volumes:
+  n8n_data: 

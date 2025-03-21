@@ -1,0 +1,74 @@
+# Dependências
+node_modules/
+/.pnp
+.pnp.js
+
+# Arquivos de build
+/dist
+/build
+/out
+
+# Arquivos de cache
+.cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Arquivos de log
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+
+# Banco de dados
+*.sqlite
+*.sqlite3
+*.db
+
+# Cobertura de testes
+/coverage
+
+# Diretórios temporários
+/tmp
+/temp
+
+# Arquivos de IDE e editores
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.directory
+
+# Arquivos específicos do projeto
+*.pem
+.vercel 
