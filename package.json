@@ -1,0 +1,20 @@
+{
+  "name": "artes-approval-system",
+  "version": "1.0.0",
+  "description": "Sistema para gerenciamento e aprovação de artes por clientes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schneidervini97/artes-approval-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schneidervini97/artes-approval-system/issues"
+  },
+  "homepage": "https://github.com/schneidervini97/artes-approval-system#readme"
+}

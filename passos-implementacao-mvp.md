@@ -4,16 +4,16 @@
 
 ### 1.1 Configuração Inicial
 - [x] Criar repositório no GitHub/GitLab
-- [ ] Configurar estrutura básica do projeto (frontend e backend)
-- [ ] Configurar Docker e Docker Compose para ambientes de desenvolvimento
-- [ ] Configurar ESLint e Prettier para padronização de código
+- [x] Configurar estrutura básica do projeto (frontend e backend)
+- [x] Configurar Docker e Docker Compose para ambientes de desenvolvimento
+- [x] Configurar ESLint e Prettier para padronização de código
 
 ### 1.2 Configuração de Dependências
-- [ ] Configurar projeto Node.js com Express para o backend
-- [ ] Configurar projeto React com Tailwind CSS para o frontend
-- [ ] Instalar dependências iniciais para ambos os projetos
-- [ ] Configurar banco de dados SQLite inicial
-- [ ] Configurar conta no Cloudinary e obter credenciais
+- [x] Configurar projeto Node.js com Express para o backend
+- [x] Configurar projeto React com Tailwind CSS para o frontend
+- [x] Instalar dependências iniciais para ambos os projetos
+- [x] Configurar banco de dados SQLite inicial
+- [x] Configurar conta no Cloudinary e obter credenciais
 
 ### 1.3 Configuração de CI/CD
 - [ ] Configurar pipeline básico no GitHub Actions ou GitLab CI
